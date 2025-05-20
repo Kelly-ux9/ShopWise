@@ -8,27 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="im2.png" alt="ShopWise Logo">
-                <span>ShopWise</span>
-            </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#marketplace">Marketplace</a>
-                <a href="Brochure.png">About</a>
-                <a href="#how-it-works">How It Works</a>
-                <div class="auth-buttons">
-                    <a href="log_in.html" class="login-btn">Login</a>
-                    <a href="sign_up.html" class="signup-btn">Sign Up</a>
-                </div>
-            </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
-    </header>
+
+    <!-- Navigation will be dynamically loaded here -->
+    <header id="nav-placeholder"></header>
 
     <main>
         <section id="hero">
@@ -36,8 +18,8 @@
                 <h1>Connect Global Markets with African Trade</h1>
                 <p>Your gateway to international commerce, starting with Rwanda</p>
                 <div class="cta-buttons">
-                    <a href="#seller-signup" class="cta-primary">Start Selling</a>
-                    <a href="#buyer-signup" class="cta-secondary">Start Buying</a>
+                    <a href="login.html" class="cta-primary">Start Selling</a>
+                    <a href="login.html" class="cta-secondary">Start Buying</a>
                 </div>
             </div>
         </section>
@@ -45,22 +27,22 @@
         <section id="features">
             <h2>Why Choose ShopWise?</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" style="background: url('products/bg1.jpg') no-repeat center center/cover;">
                     <i class="fas fa-globe"></i>
                     <h3>Global Reach</h3>
                     <p>Connect with buyers and sellers worldwide</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: url('products/bg2.jpg') no-repeat center center/cover;">
                     <i class="fas fa-lock"></i>
                     <h3>Secure Platform</h3>
                     <p>Safe transactions and verified users</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: url('products/bg3.jpg') no-repeat center center/cover;">
                     <i class="fas fa-comments"></i>
                     <h3>Direct Communication</h3>
                     <p>Chat directly with buyers/sellers</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: url('products/bg4.jpg') no-repeat center center/cover;">
                     <i class="fas fa-bell"></i>
                     <h3>Smart Notifications</h3>
                     <p>Stay updated on relevant products</p>
@@ -68,62 +50,61 @@
             </div>
         </section>
 
-        <section id="marketplace">
-          <h2>Featured Products</h2>
-          <div class="product-grid">
-              <div class="product-card">
-                  <div class="product-image">
-                      <img src="products/coffee.jpg" alt="Premium Rwandan Coffee">
-                      <span class="product-badge">Featured</span>
-                  </div>
-                  <div class="product-info">
-                      <h3>Premium Rwandan Coffee</h3>
-                      <p class="product-origin">Origin: Nyungwe, Rwanda</p>
-                      <p class="product-price">$24.99/kg</p>
-                      <button class="view-details">View Details</button>
-                  </div>
-              </div>
-      
-              <div class="product-card">
-                  <div class="product-image">
-                      <img src="products/basket.jpeg" alt="Traditional Basket">
-                      <span class="product-badge">New</span>
-                  </div>
-                  <div class="product-info">
-                      <h3>Handwoven Peace Basket</h3>
-                      <p class="product-origin">Origin: Kigali, Rwanda</p>
-                      <p class="product-price">$39.99</p>
-                      <button class="view-details">View Details</button>
-                  </div>
-              </div>
-      
-              <div class="product-card">
-                  <div class="product-image">
-                      <img src="products/tea.jpeg" alt="Premium Tea Leaves">
-                  </div>
-                  <div class="product-info">
-                      <h3>Organic Tea Leaves</h3>
-                      <p class="product-origin">Origin: Gisovu, Rwanda</p>
-                      <p class="product-price">$18.99/kg</p>
-                      <button class="view-details">View Details</button>
-                  </div>
-              </div>
-      
-              <div class="product-card">
-                  <div class="product-image">
-                      <img src="products/art.jpeg" alt="Contemporary Art">
-                      <span class="product-badge">Limited</span>
-                  </div>
-                  <div class="product-info">
-                      <h3>Contemporary Wall Art</h3>
-                      <p class="product-origin">Origin: Huye, Rwanda</p>
-                      <p class="product-price">$149.99</p>
-                      <button class="view-details">View Details</button>
-                  </div>
-              </div>
-          </div>
-      </section>
-      
+        <section id="marketplace-preview">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/coffee.jpg" alt="Premium Rwandan Coffee">
+                        <span class="product-badge">Featured</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Rwandan Coffee</h3>
+                        <p class="product-origin">Origin: Nyungwe, Rwanda</p>
+                        <p class="product-price">$24.99/kg</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/basket.jpeg" alt="Traditional Basket">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handwoven Peace Basket</h3>
+                        <p class="product-origin">Origin: Kigali, Rwanda</p>
+                        <p class="product-price">$39.99</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/tea.jpeg" alt="Premium Tea Leaves">
+                    </div>
+                    <div class="product-info">
+                        <h3>Organic Tea Leaves</h3>
+                        <p class="product-origin">Origin: Gisovu, Rwanda</p>
+                        <p class="product-price">$18.99/kg</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/art.jpeg" alt="Contemporary Art">
+                        <span class="product-badge">Limited</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Contemporary Wall Art</h3>
+                        <p class="product-origin">Origin: Huye, Rwanda</p>
+                        <p class="product-price">$149.99</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="how-it-works">
             <h2>How It Works</h2>
@@ -166,9 +147,21 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 ShopWise. All rights reserved.</p>
+            <p>&copy; 2024 ShopWise. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Load navigation dynamically
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("nav.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("nav-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading navigation:", error));
+        });
+    </script>
 
     <script src="main.js"></script>
 </body>

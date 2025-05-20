@@ -20,26 +20,19 @@ body {
 }
 
 /* Navbar Styles */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem max(5%, 20px);
-        background: var(--white);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        position: fixed;
-        max-width: 100%;
-        margin: 0 auto;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-    }
-/* For extra large screens */
-@media (min-width: 1600px) {
-    .navbar {
-        padding: 1rem max(5%, 40px);
-    }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
+
 .logo {
     display: flex;
     align-items: center;
@@ -52,7 +45,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -85,7 +78,7 @@ body {
 
 /* Hero Section */
 #hero {
-    height: 60vh;
+    height: 45vh; /* Reduced from 70vh to 35vh */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,20 +90,22 @@ body {
     padding: 0 1rem;
 }
 
+/* Adjust font size for better balance */
 .hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem; /* Reduced slightly for better fit */
+    margin-bottom: 0.8rem;
 }
 
+/* CTA Buttons */
 .cta-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem; /* Slightly reduced margin */
 }
 
 .cta-primary, .cta-secondary {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.8rem; /* Adjusted for proportion */
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
@@ -128,7 +123,62 @@ body {
     color: var(--white);
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #hero {
+        height: 60vh; /* Further reduction for mobile */
+    }
+
+    .hero-content h1 {
+        font-size: 2rem; /* Reduce text size on smaller screens */
+    }
+}
+
+
 /* Features Section */
+#features {
+                text-align: center;
+                padding: 40px 5%;
+            }
+        
+            .features-grid {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+        
+            .feature-card {
+                flex: 1;
+                min-width: 250px;
+                max-width: 300px;
+                padding: 15px;
+                height: 150px; /* Reduced height */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        
+            .feature-card i {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+        
+            @media (max-width: 768px) {
+                .features-grid {
+                    flex-direction: column;
+                    align-items: center;
+                }
+        
+                .feature-card {
+                    width: 100%;
+                    max-width: 350px;
+                }
+            }
 #features {
     padding: 5rem 5%;
     background: var(--light-bg);
@@ -152,6 +202,8 @@ body {
 .feature-card:hover {
     transform: translateY(-10px);
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -355,32 +407,120 @@ body {
 .view-details:hover {
     background: var(--accent-color);
 }
-/* Mobile Menu Styles */
-.menu-toggle {
-    cursor: pointer;
-    z-index: 100;
+
+
+
+
+
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #f8b400;
 }
 
-.nav-links.active {
+#about p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#about h3 {
+    font-size: 2rem;
+    margin-top: 30px;
+    color: #ffcc00;
+}
+
+#about ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 700px;
+}
+
+#about ul li {
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about ul li::before {
+    
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    color: #f8b400;
+    font-size: 1.5rem;
+}
+#features {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f4f4f4;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-card {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 250px;
-    background: var(--primary-color);
-    padding: 80px 2rem 2rem;
-    transform: translateX(0);
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 }
 
-/* .nav-links {
-    transform: translateX(100%);
-} */
-
-.nav-links.active a {
-    color: var(--white);
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Dark overlay for better text visibility */
+.feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
 }
+
+.feature-card i,
+.feature-card h3,
+.feature-card p {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+

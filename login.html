@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopWise - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .signup-btn {
+            background: #ffcc00;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Login Container */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f4;
+            padding: 80px 20px 20px; /* Prevents navbar overlap */
+        }
+
+        .login-form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-form h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .toggle-role {
+            margin-bottom: 15px;
+        }
+
+        .toggle-role button {
+            background: #ffcc00;
+            color: #333;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .toggle-role button:hover {
+            background: #ffaa00;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .input-wrapper i {
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .input-wrapper input {
+            border: none;
+            background: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .login-btn {
+            background: #333;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .login-btn:hover {
+            background: #555;
+        }
+
+        .register-link {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .register-link a {
+            color: #ff8800;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #333;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 10px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .login-container {
+                padding: 60px 15px; /* Keeps spacing on mobile */
+            }
+
+            .login-form {
+                width: 90%;
+            }
+
+            .input-wrapper {
+                padding: 8px;
+            }
+
+            .login-btn {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="im2.png" alt="ShopWise Logo">
+                <span>ShopWise</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#marketplace">Marketplace</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="how_it_work.html">How It Works</a></li>
+                <li class="auth-buttons">
+                    <a href="sign_up.html" class="signup-btn">Sign Up</a>
+                </li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <form class="login-form" id="loginForm">
+            <h2>Login as <span id="userRole">Buyer</span></h2>
+            <div class="toggle-role">
+                <button type="button" onclick="toggleRole()">Switch to <span id="switchRole">Seller</span></button>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <p class="register-link">Don't have an account? <a href="sign_up.html">Register</a></p>
+        </form>
+    </div>
+    
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    
+        let currentRole = 'Buyer';
+    
+        function toggleRole() {
+            currentRole = currentRole === 'Buyer' ? 'Seller' : 'Buyer';
+            document.getElementById('userRole').innerText = currentRole;
+            document.getElementById('switchRole').innerText = currentRole === 'Buyer' ? 'Seller' : 'Buyer';
+        }
+    
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (currentRole === 'Buyer') {
+                window.location.href = "buyer_dashboard.html";
+            } else {
+                window.location.href = "seller_dashboard.html";
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
