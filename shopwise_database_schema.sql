@@ -1,60 +1,96 @@
-
--- ShopWise Database Schema
-
-CREATE DATABASE IF NOT EXISTS shopwise_db;
+CREATE DATABASE shopwise_db;
 USE shopwise_db;
 
--- Users Table
+-- USERS TABLE
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    role ENUM('buyer', 'seller', 'admin') DEFAULT 'buyer',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    password VARCHAR(255),
+    role ENUM('customer', 'admin') DEFAULT 'customer',
+    date_registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Products Table
+-- CATEGORIES TABLE
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+-- PRODUCTS TABLE
 CREATE TABLE products (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    seller_id INT,
-    name VARCHAR(100),
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_id INT,
+    product_name VARCHAR(150),
     description TEXT,
-    price DECIMAL(10, 2),
-    stock INT DEFAULT 0,
+    price DECIMAL(10,2),
+    stock_quantity INT,
     image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (seller_id) REFERENCES users(id)
+    supplier_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id),
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
--- Orders Table
+-- SUPPLIERS TABLE
+CREATE TABLE suppliers (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100),
+    contact_email VARCHAR(100),
+    phone VARCHAR(20),
+    address VARCHAR(150)
+);
+
+-- ORDERS TABLE
 CREATE TABLE orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    buyer_id INT,
-    total_amount DECIMAL(10, 2),
-    status ENUM('pending', 'paid', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (buyer_id) REFERENCES users(id)
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    total_amount DECIMAL(10,2),
+    order_status ENUM('Pending','Processing','Completed','Cancelled') DEFAULT 'Pending',
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
--- Order Items Table
+-- ORDER ITEMS TABLE
 CREATE TABLE order_items (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
     product_id INT,
     quantity INT,
-    price DECIMAL(10, 2),
-    FOREIGN KEY (order_id) REFERENCES orders(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
+    price DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
--- Messages Table (Optional)
-CREATE TABLE messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sender_id INT,
-    receiver_id INT,
-    content TEXT,
-    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (sender_id) REFERENCES users(id),
-    FOREIGN KEY (receiver_id) REFERENCES users(id)
+-- PAYMENTS TABLE
+CREATE TABLE payments (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    payment_method ENUM('Cash','Mobile Money','Credit Card','Bank Transfer'),
+    payment_status ENUM('Pending','Paid','Failed') DEFAULT 'Pending',
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+-- DELIVERIES TABLE
+CREATE TABLE deliveries (
+    delivery_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    delivery_address VARCHAR(255),
+    delivery_status ENUM('Pending','In Transit','Delivered','Returned') DEFAULT 'Pending',
+    delivery_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+-- FEEDBACK TABLE
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    feedback_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
