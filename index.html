@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopWise - Global Trade Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation will be dynamically loaded here -->
+    <header id="nav-placeholder"></header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Connect Global Markets with African Trade</h1>
+                <p>Your gateway to international commerce, starting with Rwanda</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="cta-primary">Start Selling</a>
+                    <a href="login.html" class="cta-secondary">Start Buying</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2>Why Choose ShopWise?</h2>
+            <div class="features-grid">
+                <div class="feature-card" style="background: url('products/bg1.jpg') no-repeat center center/cover;">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Reach</h3>
+                    <p>Connect with buyers and sellers worldwide</p>
+                </div>
+                <div class="feature-card" style="background: url('products/bg2.jpg') no-repeat center center/cover;">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure Platform</h3>
+                    <p>Safe transactions and verified users</p>
+                </div>
+                <div class="feature-card" style="background: url('products/bg3.jpg') no-repeat center center/cover;">
+                    <i class="fas fa-comments"></i>
+                    <h3>Direct Communication</h3>
+                    <p>Chat directly with buyers/sellers</p>
+                </div>
+                <div class="feature-card" style="background: url('products/bg4.jpg') no-repeat center center/cover;">
+                    <i class="fas fa-bell"></i>
+                    <h3>Smart Notifications</h3>
+                    <p>Stay updated on relevant products</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketplace-preview">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/coffee.jpg" alt="Premium Rwandan Coffee">
+                        <span class="product-badge">Featured</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Rwandan Coffee</h3>
+                        <p class="product-origin">Origin: Nyungwe, Rwanda</p>
+                        <p class="product-price">$24.99/kg</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/basket.jpeg" alt="Traditional Basket">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handwoven Peace Basket</h3>
+                        <p class="product-origin">Origin: Kigali, Rwanda</p>
+                        <p class="product-price">$39.99</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/tea.jpeg" alt="Premium Tea Leaves">
+                    </div>
+                    <div class="product-info">
+                        <h3>Organic Tea Leaves</h3>
+                        <p class="product-origin">Origin: Gisovu, Rwanda</p>
+                        <p class="product-price">$18.99/kg</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="products/art.jpeg" alt="Contemporary Art">
+                        <span class="product-badge">Limited</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Contemporary Wall Art</h3>
+                        <p class="product-origin">Origin: Huye, Rwanda</p>
+                        <p class="product-price">$149.99</p>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your account as a buyer or seller</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect</h3>
+                    <p>Browse products or list your items</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Trade</h3>
+                    <p>Negotiate and complete transactions</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About ShopWise</h4>
+                <p>Connecting global markets with African trade</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#seller-guide">Seller Guide</a>
+                <a href="#buyer-guide">Buyer Guide</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@shopwise.com</p>
+                <p>Phone: +250 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ShopWise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load navigation dynamically
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("nav.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("nav-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading navigation:", error));
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>

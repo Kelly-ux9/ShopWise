@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ShopWise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .content {
+            padding: 100px 20px 40px;
+            text-align: center;
+            background: #f4f4f4;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Increased gap for more space */
+    margin-bottom: 50px; /* More bottom margin for separation */
+}
+
+.section img {
+    width: 45%;
+    max-height: 220px; /* Slightly larger for better proportion */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.section .text {
+    width: 55%;
+    text-align: left;
+    padding: 10px; /* Added padding for spacing */
+}
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .services-list li {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .services-list li:hover {
+            background: #e0e0e0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section img,
+            .section .text {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar will be loaded dynamically -->
+    <header id="navbar-container"></header>
+
+    <section id="about" class="content">
+        <div class="about-container">
+            <h2 style="color: #007bff; margin-bottom: 20px;">About Us</h2>
+
+            <div class="section">
+                <img src="products/aboutus.jpg" alt="About ShopWise">
+                <div class="text">
+                    <p style="color: #555; line-height: 1.6;">
+                        The <strong>ShopWise Program</strong> aims to improve retail in Africa by offering smart solutions to make stores more efficient, enhance customer experiences, and help local shops manage inventory more effectively.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="color: #007bff;">Our Services</h3>
+
+            <div class="section">
+                <img src="products/ourservice.jpeg" alt="Services">
+                <div class="text">
+                    <ul class="services-list">
+                        <li><strong>Inventory Management:</strong> Real-time tracking to reduce waste and optimize ordering.</li>
+                        <li><strong>Customer Analytics:</strong> Tools to analyze shopping habits and enable personalized marketing.</li>
+                        <li><strong>Mobile Payments:</strong> Fast and secure payment options for seamless transactions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #333;">Our Vision</h3>
+
+            <div class="section">
+                <img src="products/ourvision.jpeg" alt="Vision">
+                <div class="text">
+                    <p style="color: #555; line-height: 1.6;">
+                        The ShopWise Program aims to modernize and digitize Africa’s retail industry by integrating smart solutions to enhance customer satisfaction and contribute to Africa’s economic growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Load Navbar dynamically
+        fetch("nav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            });
+
+        // Toggle menu for mobile
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('menuToggle').addEventListener('click', function () {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

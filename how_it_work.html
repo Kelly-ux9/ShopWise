@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - ShopWise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Full-page layout to push footer to bottom */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1; /* Pushes footer to the bottom */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation will be dynamically loaded here -->
+    <header id="nav-placeholder"></header>
+
+    <div class="content">
+        <section style="text-align: center; padding: 80px 20px 40px; background: #f4f4f4;">
+            <h2 style="color: #007bff; margin-bottom: 30px; font-size: 32px;">How It Works</h2>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; width: 250px;">
+                    <div style="background: #007bff; color: white; font-size: 20px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 15px;">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your account as a buyer or seller.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; width: 250px;">
+                    <div style="background: #007bff; color: white; font-size: 20px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 15px;">2</div>
+                    <h3>Connect</h3>
+                    <p>Browse products or list your items.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; width: 250px;">
+                    <div style="background: #007bff; color: white; font-size: 20px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 15px;">3</div>
+                    <h3>Trade</h3>
+                    <p>Negotiate and complete transactions.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="background: #333; color: white; padding: 30px 20px; text-align: center; width: 100%;">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+            <div style="flex: 1; min-width: 250px; padding: 10px;">
+                <h4>About ShopWise</h4>
+                <p>Connecting global markets with African trade</p>
+            </div>
+            <div style="flex: 1; min-width: 250px; padding: 10px;">
+                <h4>Quick Links</h4>
+                <a href="#marketplace" style="color: #ffcc00; text-decoration: none; display: block; margin: 5px 0;">Marketplace</a>
+                <a href="#seller-guide" style="color: #ffcc00; text-decoration: none; display: block; margin: 5px 0;">Seller Guide</a>
+                <a href="#buyer-guide" style="color: #ffcc00; text-decoration: none; display: block; margin: 5px 0;">Buyer Guide</a>
+            </div>
+            <div style="flex: 1; min-width: 250px; padding: 10px;">
+                <h4>Contact</h4>
+                <p>Email: <a href="mailto:info@shopwise.com" style="color: #ffcc00; text-decoration: none;">info@shopwise.com</a></p>
+                <p>Phone: +250 123 456 789</p>
+            </div>
+        </div>
+        <div style="margin-top: 20px; border-top: 1px solid #555; padding-top: 15px;">
+            <p>&copy; 2024 ShopWise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load navigation dynamically
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("nav.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("nav-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading navigation:", error));
+        });
+    </script>
+
+</body>
+</html>
