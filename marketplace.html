@@ -189,6 +189,26 @@
             if (e.target === modal) modal.style.display = 'none';
         });
     </script>
+    <script src="products.js"></script>
+<script>
+  const productContainer = document.getElementById("product-list");
+
+  products.forEach(product => {
+    productContainer.innerHTML += `
+      <div class="product-card">
+        <img src="${product.image}" width="150">
+        <h3>${product.name}</h3>
+        <p>${product.price} RWF</p>
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+      </div>
+    `;
+  });
+
+  function addToCart(id) {
+    alert("Product added to cart!");
+  }
+</script>
+
 
     <!-- Marketplace Modal CSS -->
     <style>
