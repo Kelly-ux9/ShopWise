@@ -1,20 +1,26 @@
-const products = [
-  {
-    id: 1,
-    name: "Smart Watch",
-    price: 50000,
-    image: "products/watch.jpg"
-  },
-  {
-    id: 2,
-    name: "Wireless Headphones",
-    price: 35000,
-    image: "products/headphone.jpg"
-  },
-  {
-    id: 3,
-    name: "Laptop Backpack",
-    price: 25000,
-    image: "products/bag.jpg"
-  }
-];
+import { supabase } from "./supabase.js"
+
+async function loadProducts() {
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+
+  const container = document.getElementById("product-list")
+
+  data.forEach(product => {
+
+    const productCard = `
+      <div class="product">
+        <img src="${product.image}" width="150">
+        <h3>${product.name}</h3>
+        <p>${product.price} RWF</p>
+      </div>
+    `
+
+    container.innerHTML += productCard
+
+  })
+}
+
+loadProducts()
