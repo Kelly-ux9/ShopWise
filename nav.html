@@ -4,7 +4,351 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigation Bar</title>
-    <style>
+    <style><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopWise Navbar</title>
+
+<!-- Google Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+height:2000px;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:12px 40px;
+background:#111;
+color:white;
+z-index:1000;
+transition:0.3s;
+}
+
+/* STICKY SCROLL EFFECT */
+
+.navbar.scrolled{
+background:#000;
+box-shadow:0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+}
+
+.logo img{
+height:40px;
+margin-right:10px;
+}
+
+.logo span{
+font-size:22px;
+font-weight:bold;
+color:#ffcc00;
+}
+
+/* SEARCH BAR */
+
+.search-box{
+display:flex;
+align-items:center;
+background:white;
+border-radius:30px;
+padding:5px 15px;
+width:350px;
+}
+
+.search-box input{
+border:none;
+outline:none;
+width:100%;
+padding:8px;
+}
+
+.search-box span{
+color:#333;
+cursor:pointer;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+display:flex;
+align-items:center;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+font-size:16px;
+transition:0.3s;
+position:relative;
+}
+
+/* GLOW HOVER */
+
+.nav-links a:hover{
+color:#ffcc00;
+text-shadow:0 0 10px #ffcc00;
+}
+
+/* CART ICON */
+
+.cart{
+cursor:pointer;
+margin-left:20px;
+font-size:26px;
+}
+
+/* PROFILE */
+
+.profile{
+position:relative;
+margin-left:20px;
+cursor:pointer;
+}
+
+.profile img{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+.dropdown{
+position:absolute;
+top:50px;
+right:0;
+background:white;
+color:black;
+width:150px;
+display:none;
+flex-direction:column;
+border-radius:5px;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+.dropdown a{
+padding:10px;
+text-decoration:none;
+color:black;
+}
+
+.dropdown a:hover{
+background:#eee;
+}
+
+.profile.active .dropdown{
+display:flex;
+}
+
+/* HAMBURGER */
+
+.hamburger{
+display:none;
+flex-direction:column;
+cursor:pointer;
+}
+
+.hamburger div{
+width:25px;
+height:3px;
+background:white;
+margin:4px;
+transition:0.4s;
+}
+
+/* ANIMATION */
+
+.hamburger.active div:nth-child(1){
+transform:rotate(45deg) translate(5px,5px);
+}
+
+.hamburger.active div:nth-child(2){
+opacity:0;
+}
+
+.hamburger.active div:nth-child(3){
+transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+position:fixed;
+top:0;
+right:-100%;
+width:260px;
+height:100%;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+padding:80px 25px;
+display:flex;
+flex-direction:column;
+transition:0.4s;
+}
+
+.mobile-menu a{
+margin:15px 0;
+font-size:18px;
+color:black;
+text-decoration:none;
+}
+
+.mobile-menu.active{
+right:0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.search-box{
+display:none;
+}
+
+.nav-links{
+display:none;
+}
+
+.hamburger{
+display:flex;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+
+<div class="logo">
+<img src="im2.png">
+<span>ShopWise</span>
+</div>
+
+<!-- SEARCH BAR -->
+
+<div class="search-box">
+<input type="text" placeholder="Search products...">
+<span class="material-icons">search</span>
+</div>
+
+<!-- NAV LINKS -->
+
+<div class="nav-links">
+
+<a href="#">Home</a>
+<a href="#">Marketplace</a>
+<a href="#">About</a>
+<a href="#">How it Works</a>
+
+<span class="material-icons cart">shopping_cart</span>
+
+<div class="profile" id="profile">
+
+<img src="https://i.pravatar.cc/40">
+
+<div class="dropdown">
+
+<a href="#">Dashboard</a>
+<a href="#">Orders</a>
+<a href="#">Settings</a>
+<a href="#">Logout</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HAMBURGER -->
+
+<div class="hamburger" id="hamburger">
+
+<div></div>
+<div></div>
+<div></div>
+
+</div>
+
+</nav>
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="#">Home</a>
+<a href="#">Marketplace</a>
+<a href="#">About</a>
+<a href="#">How it Works</a>
+<a href="#">Login</a>
+<a href="#">Sign Up</a>
+
+</div>
+
+<script>
+
+/* HAMBURGER */
+
+const hamburger=document.getElementById("hamburger");
+const mobileMenu=document.getElementById("mobileMenu");
+
+hamburger.onclick=()=>{
+hamburger.classList.toggle("active");
+mobileMenu.classList.toggle("active");
+}
+
+/* PROFILE DROPDOWN */
+
+const profile=document.getElementById("profile");
+
+profile.onclick=()=>{
+profile.classList.toggle("active");
+}
+
+/* STICKY SCROLL */
+
+window.addEventListener("scroll",function(){
+
+const navbar=document.getElementById("navbar");
+
+if(window.scrollY>50){
+navbar.classList.add("scrolled");
+}
+else{
+navbar.classList.remove("scrolled");
+}
+
+});
+
+</script>
+
+</body>
+</html>
         * {
             margin: 0;
             padding: 0;
