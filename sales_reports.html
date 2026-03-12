@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sales Reports</title>
+</head>
+
+<body>
+
+<h1>Sales Report</h1>
+
+<h2 id="totalSales"></h2>
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"YOUR_SUPABASE_URL",
+"YOUR_SUPABASE_KEY"
+)
+
+async function loadSales(){
+
+const { data } = await supabase
+.from("orders")
+.select("total_price")
+
+let total = 0
+
+data.forEach(order => {
+total += order.total_price
+})
+
+document.getElementById("totalSales").innerText =
+"Total Sales: " + total + " RWF"
+
+}
+
+loadSales()
+
+</script>
+
+</body>
+</html>
