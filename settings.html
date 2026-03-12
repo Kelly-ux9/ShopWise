@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Settings</title>
+</head>
+
+<body>
+
+<h1>Account Settings</h1>
+
+<input type="text" id="name" placeholder="New Name">
+
+<button onclick="updateName()">Update Name</button>
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"YOUR_SUPABASE_URL",
+"YOUR_SUPABASE_KEY"
+)
+
+async function updateName(){
+
+const name = document.getElementById("name").value
+
+await supabase
+.from("users")
+.update({name:name})
+.eq("id","USER_ID")
+
+alert("Updated!")
+
+}
+
+window.updateName = updateName
+
+</script>
+
+</body>
+</html>
