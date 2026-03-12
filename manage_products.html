@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manage Products</title>
+</head>
+
+<body>
+
+<h1>Manage Products</h1>
+
+<input type="text" id="name" placeholder="Product Name">
+<input type="number" id="price" placeholder="Price">
+<input type="text" id="image" placeholder="Image URL">
+
+<button onclick="addProduct()">Add Product</button>
+
+<h2>Products</h2>
+
+<div id="productList"></div>
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"YOUR_SUPABASE_URL",
+"YOUR_SUPABASE_KEY"
+)
+
+// ADD PRODUCT
+async function addProduct(){
+
+const name = document.getElementById("name").value
+const price = document.getElementById("price").value
+const image = document.getElementById("image").value
+
+await supabase.from("products").insert([
+{ name:name, price:price, image:image }
+])
+
+loadProducts()
+
+}
+
+window.addProduct = addProduct
+
+// LOAD PRODUCTS
+async function loadProducts(){
+
+const { data } = await supabase.from("products").select("*")
+
+const list = document.getElementById("productList")
+list.innerHTML=""
+
+data.forEach(p => {
+
+list.innerHTML += `
+<div>
+<h3>${p.name}</h3>
+<p>${p.price} RWF</p>
+<img src="${p.image}" width="100">
+</div>
+`
+
+})
+
+}
+
+loadProducts()
+
+</script>
+
+</body>
+</html>
