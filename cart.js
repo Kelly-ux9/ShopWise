@@ -1,9 +1,18 @@
-function addToCart(id) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+import { supabase } from "./supabase.js"
 
-  cart.push(id);
+async function addToCart(productId) {
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  const userId = "USER_ID"
 
-  alert("Added to cart successfully!");
+  const { data, error } = await supabase
+    .from("cart")
+    .insert([
+      {
+        user_id: userId,
+        product_id: productId,
+        quantity: 1
+      }
+    ])
+
+  alert("Product added to cart!")
 }
