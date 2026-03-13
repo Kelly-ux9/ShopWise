@@ -18,20 +18,22 @@ const supabase = createClient(
 "YOUR_SUPABASE_URL",
 "YOUR_SUPABASE_KEY"
 )
-
 async function loadSales(){
+
+const sellerId = "seller_001"
 
 const { data } = await supabase
 .from("orders")
 .select("total_price")
+.eq("seller_id", sellerId)
 
 let total = 0
 
-data.forEach(order => {
+data.forEach(order=>{
 total += order.total_price
 })
 
-document.getElementById("totalSales").innerText =
+document.getElementById("salesTotal").innerText =
 "Total Sales: " + total + " RWF"
 
 }
