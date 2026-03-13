@@ -11,6 +11,38 @@
 <div id="orders"></div>
 
 <script type="module">
+  import { supabase } from "./supabase.js"
+
+async function loadOrders(){
+
+const sellerId = "seller_001"
+
+const { data, error } = await supabase
+.from("orders")
+.select("*")
+.eq("seller_id", sellerId)
+
+const container = document.getElementById("orders")
+
+container.innerHTML=""
+
+data.forEach(order =>{
+
+container.innerHTML += `
+<div class="order-card">
+<h3>Order #${order.id}</h3>
+<p>Product ID: ${order.product_id}</p>
+<p>Quantity: ${order.quantity}</p>
+<p>Total: ${order.total_price} RWF</p>
+<p>Status: ${order.status}</p>
+</div>
+`
+
+})
+
+}
+
+loadOrders()
 
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
 
