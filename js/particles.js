@@ -3,21 +3,15 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-let mouse = { x: null, y: null };
-
-window.addEventListener("mousemove", (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
 
 let particlesArray = [];
 
-// PARTICLE
+// PARTICLE CLASS
 class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
+        this.size = Math.random() * 2 + 1;
         this.speedX = Math.random() * 1 - 0.5;
         this.speedY = Math.random() * 1 - 0.5;
     }
@@ -31,7 +25,7 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = "rgba(0,255,255,0.9)";
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -41,27 +35,8 @@ class Particle {
 // INIT
 function init() {
     particlesArray = [];
-    for (let i = 0; i < 180; i++) { // MORE PARTICLES
+    for (let i = 0; i < 120; i++) {
         particlesArray.push(new Particle());
-    }
-}
-
-// CONNECT LINES
-function connect() {
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-           let dx = particlesArray[a].x - mouse.x;
-let dy = particlesArray[a].y - mouse.y;
-let dist = dx * dx + dy * dy;
-
-if (dist < 15000) {
-    ctx.strokeStyle = "rgba(255,255,255,0.3)";
-    ctx.beginPath();
-    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-    ctx.lineTo(mouse.x, mouse.y);
-    ctx.stroke();
-}
-        }
     }
 }
 
@@ -74,12 +49,10 @@ function animate() {
         p.draw();
     });
 
-    connect(); // 🔥 ADD CONNECTIONS
-
     requestAnimationFrame(animate);
 }
 
-// RESIZE
+// RESIZE FIX
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
