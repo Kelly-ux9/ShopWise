@@ -9,6 +9,9 @@
     animation: rotateCube 10s infinite linear;
     filter: drop-shadow(0 0 20px cyan); /* GLOW */
 }
+#bg-animation {
+    background: radial-gradient(circle at center, #0f2027, #203a43, #000000);
+}
 
 #cube div {
     position: absolute;
