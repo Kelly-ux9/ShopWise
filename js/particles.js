@@ -3,6 +3,12 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+let mouse = { x: null, y: null };
+
+window.addEventListener("mousemove", (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});
 
 let particlesArray = [];
 
@@ -44,18 +50,17 @@ function init() {
 function connect() {
     for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
-            let dx = particlesArray[a].x - particlesArray[b].x;
-            let dy = particlesArray[a].y - particlesArray[b].y;
-            let distance = dx * dx + dy * dy;
+           let dx = particlesArray[a].x - mouse.x;
+let dy = particlesArray[a].y - mouse.y;
+let dist = dx * dx + dy * dy;
 
-            if (distance < 10000) {
-                ctx.strokeStyle = "rgba(0,255,255,0.2)";
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
-            }
+if (dist < 15000) {
+    ctx.strokeStyle = "rgba(255,255,255,0.3)";
+    ctx.beginPath();
+    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+    ctx.lineTo(mouse.x, mouse.y);
+    ctx.stroke();
+}
         }
     }
 }
