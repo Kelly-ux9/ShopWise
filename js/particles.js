@@ -6,12 +6,12 @@ canvas.height = window.innerHeight;
 
 let particlesArray = [];
 
-// PARTICLE CLASS
+// PARTICLE
 class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
+        this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 1 - 0.5;
         this.speedY = Math.random() * 1 - 0.5;
     }
@@ -25,7 +25,7 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.fillStyle = "rgba(0,255,255,0.9)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -35,8 +35,28 @@ class Particle {
 // INIT
 function init() {
     particlesArray = [];
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 180; i++) { // MORE PARTICLES
         particlesArray.push(new Particle());
+    }
+}
+
+// CONNECT LINES
+function connect() {
+    for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+            let dx = particlesArray[a].x - particlesArray[b].x;
+            let dy = particlesArray[a].y - particlesArray[b].y;
+            let distance = dx * dx + dy * dy;
+
+            if (distance < 10000) {
+                ctx.strokeStyle = "rgba(0,255,255,0.2)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                ctx.stroke();
+            }
+        }
     }
 }
 
@@ -49,10 +69,12 @@ function animate() {
         p.draw();
     });
 
+    connect(); // 🔥 ADD CONNECTIONS
+
     requestAnimationFrame(animate);
 }
 
-// RESIZE FIX
+// RESIZE
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
