@@ -1,53 +1,27 @@
-/* BACKGROUND CONTAINER */
-#bg-animation {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    overflow: hidden;
-    background: #0a0a0a;
-}
-
-/* PARTICLES CANVAS */
-#particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-/* CUBE */
 #cube {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 150px;
-    height: 150px;
+    width: 220px;   /* BIGGER */
+    height: 220px;
     transform-style: preserve-3d;
     transform: translate(-50%, -50%);
-    animation: rotateCube 15s infinite linear;
+    animation: rotateCube 10s infinite linear;
+    filter: drop-shadow(0 0 20px cyan); /* GLOW */
 }
 
-/* CUBE SIDES */
 #cube div {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    border: 2px solid rgba(255,255,255,0.2);
-    backdrop-filter: blur(5px);
+    width: 220px;
+    height: 220px;
+    border: 2px solid rgba(255,255,255,0.6); /* STRONGER */
+    backdrop-filter: blur(3px);
 }
 
-/* COLORS */
-.side1 { background: rgba(0,255,255,0.2); transform: rotateY(0deg) translateZ(75px); }
-.side2 { background: rgba(255,0,255,0.2); transform: rotateY(90deg) translateZ(75px); }
-.side3 { background: rgba(0,255,0,0.2); transform: rotateY(180deg) translateZ(75px); }
-.side4 { background: rgba(255,0,0,0.2); transform: rotateY(-90deg) translateZ(75px); }
-.side5 { background: rgba(255,255,0,0.2); transform: rotateX(90deg) translateZ(75px); }
-.side6 { background: rgba(255,105,180,0.2); transform: rotateX(-90deg) translateZ(75px); }
-
-/* ROTATION */
-@keyframes rotateCube {
-    0% { transform: translate(-50%, -50%) rotateX(0) rotateY(0); }
-    100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
-}
+/* STRONG COLORS */
+.side1 { background: rgba(0,255,255,0.5); transform: rotateY(0deg) translateZ(110px); }
+.side2 { background: rgba(255,0,255,0.5); transform: rotateY(90deg) translateZ(110px); }
+.side3 { background: rgba(0,255,0,0.5); transform: rotateY(180deg) translateZ(110px); }
+.side4 { background: rgba(255,0,0,0.5); transform: rotateY(-90deg) translateZ(110px); }
+.side5 { background: rgba(255,255,0,0.5); transform: rotateX(90deg) translateZ(110px); }
+.side6 { background: rgba(255,105,180,0.5); transform: rotateX(-90deg) translateZ(110px); }
