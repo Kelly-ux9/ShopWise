@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Learn how ShopWise connects African sellers and global buyers.">
+<title>How It Works | ShopWise</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="page-shell">
+<header id="nav-placeholder"></header>
+<main class="standard-page">
+  <section class="standard-hero">
+    <span class="section-kicker">HOW SHOPWISE WORKS</span>
+    <h1>Simple steps from <span>discovery</span> to connection.</h1>
+    <p>ShopWise brings African products, entrepreneurs and buyers together through a clear digital marketplace experience.</p>
+  </section>
+  <section class="info-panel">
+    <div class="info-grid">
+      <article class="info-card"><div class="info-number">01</div><i class="fas fa-user-plus icon-box"></i><h2>Create an account</h2><p>Choose whether you are joining as a buyer or seller and create your ShopWise account.</p></article>
+      <article class="info-card"><div class="info-number">02</div><i class="fas fa-store icon-box"></i><h2>Discover or list</h2><p>Buyers explore products while sellers present their products with clear information.</p></article>
+      <article class="info-card"><div class="info-number">03</div><i class="fas fa-handshake icon-box"></i><h2>Connect & trade</h2><p>Move from product discovery toward a buyer–seller relationship and a transaction.</p></article>
+    </div>
+  </section>
+  <section class="info-panel" style="margin-top:28px;background:#10221b;color:#fff;">
+    <div style="max-width:760px;margin:auto;text-align:center;">
+      <span class="section-kicker" style="color:#9ed5bc;">BUILT FOR BOTH SIDES</span>
+      <h2 style="font-family:'Space Grotesk';font-size:clamp(28px,4vw,42px);margin:8px 0 12px;">One marketplace. More opportunities.</h2>
+      <p style="color:#bdccc5;">Sellers get a digital storefront. Buyers get a place to discover products from Africa. ShopWise connects the two.</p>
+      <div class="cta-buttons-modern" style="justify-content:center;margin-top:24px;"><a class="btn-light" href="marketplace.html">Explore marketplace <i class="fas fa-arrow-right"></i></a><a class="btn-outline" href="sign_up.html">Create account</a></div>
+    </div>
+  </section>
+</main>
+<footer class="footer-modern footer-simple"><div class="footer-bottom"><span>© 2026 ShopWise. Built from Rwanda.</span><span>Connecting products. Connecting people. Connecting markets.</span></div></footer>
+<script src="nav.js"></script>
+<script>
+fetch('nav.html').then(function(r){if(!r.ok)throw new Error('Navigation unavailable');return r.text();}).then(function(html){document.getElementById('nav-placeholder').innerHTML=html;if(window.ShopWiseNav)window.ShopWiseNav.init();}).catch(function(err){console.error(err);});
+</script>
+</body></html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dashboard-container {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background: #007bff;
+        }
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        .orders-table {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .filter-section {
+            margin-bottom: 10px;
+        }
+        select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>Buyer Dashboard</h2>
+            <ul>
+                <li><a href="buyer_dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="buyer_orders.html" class="active"><i class="fa fa-shopping-cart"></i> My Orders</a></li>
+                <li><a href="wishlist.html"><i class="fa fa-heart"></i> Wishlist</a></li>
+                <li><a href="b_profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a href="messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                <li><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a href="login.html"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1>My Orders</h1>
+            </header>
+            <section class="orders-table">
+                <div class="filter-section">
+                    <label for="status-filter">Filter by Status:</label>
+                    <select id="status-filter">
+                        <option value="all">All</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="processing">Processing</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                </div>
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Status</th>
+                        <th>Expected Delivery</th>
+                    </tr>
+                    <tr>
+                        <td>#2023</td>
+                        <td>Smartphone</td>
+                        <td>Shipped</td>
+                        <td>Feb 25</td>
+                    </tr>
+                    <tr>
+                        <td>#2024</td>
+                        <td>Headphones</td>
+                        <td>Processing</td>
+                        <td>Feb 28</td>
+                    </tr>
+                    <tr>
+                        <td>#2025</td>
+                        <td>Gaming Mouse</td>
+                        <td>Delivered</td>
+                        <td>Feb 20</td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
