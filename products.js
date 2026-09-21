@@ -1,29 +1,7 @@
 import { supabase } from "./supabase.js";
-
-export async function loadProducts(containerId = "product-list") {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const { data, error } = await supabase.from("products").select("*");
-  if (error) {
-    console.error("Unable to load products:", error);
-    return;
-  }
-  container.replaceChildren();
-  for (const product of data ?? []) {
-    const card = document.createElement("article");
-    card.className = "product-card-modern";
-    const title = document.createElement("h3");
-    title.textContent = product.name ?? "Untitled product";
-    const price = document.createElement("p");
-    price.textContent = `${product.price ?? ""} RWF`;
-    card.append(title, price);
-    if (product.image) {
-      const img = document.createElement("img");
-      img.src = product.image;
-      img.alt = product.name ?? "Product";
-      img.loading = "lazy";
-      card.prepend(img);
-    }
-    container.appendChild(card);
-  }
+export async function loadProducts(containerId="product-list"){
+ const container=document.getElementById(containerId); if(!container) return;
+ const {data,error}=await supabase.from("products").select("id,name,price,image,category,origin").eq("is_active",true).order("created_at",{ascending:false});
+ if(error){container.textContent="Unable to load products."; return;}
+ container.innerHTML=(data||[]).map(p=>`<article class="product-card"><div class="product-image"><img src="${String(p.image).replace(/"/g,'&quot;')}" alt=""></div><div class="product-info"><h3>${String(p.name).replace(/[&<>]/g,'')}</h3><p class="product-price">${Number(p.price).toLocaleString()} RWF</p></div></article>`).join("");
 }
