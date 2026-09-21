@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Confirming account | ShopWise</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card" style="text-align:center">
+      <h1 id="title">Confirming your email…</h1>
+      <p id="message">Please wait while ShopWise completes your account verification.</p>
+      <p><a id="loginLink" href="login.html">Go to login</a></p>
+    </section>
+  </main>
+  <script type="module">
+    import { supabase } from './supabase.js';
+
+    const title = document.getElementById('title');
+    const message = document.getElementById('message');
+    const loginLink = document.getElementById('loginLink');
+
+    const loginUrl = new URL('login.html', window.location.href).href;
+    loginLink.href = loginUrl;
+
+    try {
+      // supabase-js reads the confirmation session from the URL hash and
+      // persists it when the client initializes. Give it a moment to finish.
+      const { data, error } = await supabase.auth.getSession();
+      if (error) throw error;
+
+      if (data.session) {
+        title.textContent = 'Email confirmed';
+        message.textContent = 'Your ShopWise account is verified. Taking you to login…';
+      } else {
+        title.textContent = 'Email confirmed';
+        message.textContent = 'Your email has been confirmed. You can now sign in to ShopWise.';
+      }
+
+      // Remove tokens from the visible address bar before redirecting.
+      window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+      setTimeout(() => { window.location.replace(loginUrl); }, 1200);
+    } catch (error) {
+      window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+      title.textContent = 'Confirmation completed';
+      message.textContent = error?.message || 'Your email may already be confirmed. Please try signing in.';
+      setTimeout(() => { window.location.replace(loginUrl); }, 2500);
+    }
+  </script>
+</body>
+</html>
