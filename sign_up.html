@@ -1,1 +1,60 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create Account | ShopWise</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head><body><header id="nav-placeholder"></header><main class="auth-page"><form class="auth-card" id="signupForm"><h1>Create your ShopWise account</h1><p>Join as a buyer or seller and start trading.</p><div class="input-group"><label for="name">Full name</label><input id="name" type="text" autocomplete="name" required placeholder="Your full name"></div><div class="input-group"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div><div class="input-group"><label for="password">Password</label><input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters"></div><div class="input-group"><label>Account type</label><div class="role-toggle"><label><input type="radio" name="role" value="Buyer" checked><span>Buyer</span></label><label><input type="radio" name="role" value="Seller"><span>Seller</span></label></div></div><button class="auth-submit" type="submit">Create account</button><div id="message" class="auth-message"></div><div class="auth-links">Already registered? <a href="login.html">Sign in</a></div></form></main><script src="js/nav.js"></script><script type="module">import { supabase } from './supabase.js'; const form=document.getElementById('signupForm'), msg=document.getElementById('message'); form.addEventListener('submit',async e=>{e.preventDefault(); msg.className='auth-message'; msg.textContent='Creating account...'; try{const full_name=document.getElementById('name').value.trim();const email=document.getElementById('email').value.trim();const password=document.getElementById('password').value;const role=document.querySelector('input[name="role"]:checked').value;const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name,role}}});if(error) throw error;if(data.session){window.location.href=role==='Seller'?'seller_dashboard.html':'buyer_dashboard.html';return;} msg.className='auth-message success';msg.textContent='Account created. Check your email to confirm your account, then sign in.';}catch(err){msg.className='auth-message error';msg.textContent=err.message||'Unable to create your account.';}});</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Create Account | ShopWise</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  <header id="nav-placeholder"></header>
+  <main class="auth-page">
+    <form class="auth-card" id="signupForm">
+      <h1>Create your ShopWise account</h1>
+      <p>Join as a buyer or seller and start trading.</p>
+      <div class="input-group"><label for="name">Full name</label><input id="name" type="text" autocomplete="name" required placeholder="Your full name"></div>
+      <div class="input-group"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="input-group"><label for="password">Password</label><input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters"></div>
+      <div class="input-group"><label>Account type</label><div class="role-toggle"><label><input type="radio" name="role" value="Buyer" checked><span>Buyer</span></label><label><input type="radio" name="role" value="Seller"><span>Seller</span></label></div></div>
+      <button class="auth-submit" type="submit">Create account</button>
+      <div id="message" class="auth-message" role="status" aria-live="polite"></div>
+      <div class="auth-links">Already registered? <a href="login.html">Sign in</a></div>
+    </form>
+  </main>
+  <script src="js/nav.js"></script>
+  <script type="module">
+    import { supabase } from './supabase.js';
+    const form = document.getElementById('signupForm');
+    const msg = document.getElementById('message');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      msg.className = 'auth-message';
+      msg.textContent = 'Creating account...';
+      try {
+        const full_name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const role = document.querySelector('input[name="role"]:checked').value;
+        const redirectTo = new URL('auth-callback.html', window.location.href).href;
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { emailRedirectTo: redirectTo, data: { full_name, role } }
+        });
+        if (error) throw error;
+        if (data.session) {
+          window.location.href = role === 'Seller' ? 'seller_dashboard.html' : 'buyer_dashboard.html';
+          return;
+        }
+        msg.className = 'auth-message success';
+        msg.textContent = 'Account created. Check your email and click the confirmation link. You will then be sent back to ShopWise login.';
+      } catch (error) {
+        msg.className = 'auth-message error';
+        msg.textContent = error?.message || 'Unable to create your account. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>
